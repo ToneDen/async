@@ -963,7 +963,13 @@ function iterator(coll) {
 
 function onlyOnce(fn) {
     return function() {
-        if (fn === null) throw new Error("Callback was already called.");
+        if (fn === null) {
+            if (args[0] && args[0].stack) {
+                throw args[0];
+            } else {
+                throw new Error("Callback was already called.");
+            }
+        }
         var callFn = fn;
         fn = null;
         callFn.apply(this, arguments);
