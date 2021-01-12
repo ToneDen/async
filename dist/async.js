@@ -964,8 +964,8 @@ function iterator(coll) {
 function onlyOnce(fn) {
     return function() {
         if (fn === null) {
-            if (args[0] && args[0].stack) {
-                throw args[0];
+            if (arguments[0] && arguments[0].stack) {
+                throw arguments[0];
             } else {
                 throw new Error("Callback was already called.");
             }
